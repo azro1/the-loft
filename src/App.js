@@ -11,14 +11,15 @@ import Create from './pages/create/Create'
 import Project from './pages/project/Project'
 
 import Navbar from './components/Navbar'
+import Sidebar from './components/Sidebar'
 
 function App() {
   return (
     <div className='App'>
       <BrowserRouter>
+      <Sidebar />
         <div className='container'>
         <Navbar />
-
           <Switch>
             <Route exact path='/'>
               <Dashboard />
