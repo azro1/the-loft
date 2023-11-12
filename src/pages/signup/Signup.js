@@ -8,9 +8,36 @@ const Signup = () => {
   const [password, setPassword] = useState('')
   const [displayName, setDisplayName] = useState('')
   const [thumbNail, setThumbNail] = useState(null)
+  const [thumbNailError, setThumbNailError] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    console.log(email, password, displayName, thumbNail)
+  }
+
+  const handleFileChange = (e) => {
+    setThumbNail(null)
+    let selected = e.target.files[0]
+    
+    if (!selected) {
+       setThumbNailError('You must choose a file')
+       return
+    } 
+    if (!selected.type.includes('image')) {
+       setThumbNailError('Selected file must be an image')
+       return
+    }
+    if (selected.size > 100000) {
+       setThumbNailError('Image file size must be less than 100kb')
+       return
+    }
+ 
+    setThumbNailError(null)
+    setThumbNail(selected)
+  }
 
   return (
-    <form className='auth-form'>
+    <form className='auth-form' onSubmit={handleSubmit}>
        <h2>Sign up</h2>
        <br />
        <label>
@@ -23,11 +50,12 @@ const Signup = () => {
        </label>
        <label>
           <span>Password</span>
-          <input type='password' value={password} onChange={(e) => setDisplayName(e.target.value)} />
+          <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} />
        </label>
        <label>
           <span>Profile thumbnail:</span>
-          <input type='file' />
+          <input type='file' onChange={handleFileChange} />
+          {thumbNailError && <div className='error'>{thumbNailError}</div>}
        </label>
        <button className='btn'>Sign up</button>
     </form>
