@@ -1,9 +1,13 @@
 import { useState } from 'react'
+import Select from 'react-select'
 
 // styles
 import './Create.css'
 
 const Create = () => {
+
+  const categories = [{ value: 'development', label: 'Development' }, { value: 'design', label: 'Design' }, { value: 'sales', label: 'Sales' }, { value: 'marketing', label: 'Marketing' }]
+
   // form field values
   const [name, setName] = useState('')
   const [details, setDetails] = useState('')
@@ -13,7 +17,7 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(name, details, dueDate)
+    console.log(name, details, dueDate, category.value)
   }
 
   return (
@@ -34,7 +38,7 @@ const Create = () => {
           </label>
           <label>
             <span>Project category:</span>
-            {/* category select dropdown here */}
+            <Select options={categories} onChange={(option) => setCategory(option)} />
           </label>
           <label>
             <span>Assign to:</span>
