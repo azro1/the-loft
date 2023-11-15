@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import Select from 'react-select'
 import { useCollection } from '../../hooks/useCollection'
+import { timestamp } from '../../firebase/config'
+import { useAuthContext } from '../../hooks/useAuthContext'
 
 // styles
 import './Create.css'
@@ -10,9 +12,15 @@ const Create = () => {
   const { documents } = useCollection('users')
   const [users, setUsers] = useState([])
 
+  // destructure user from hook
+  const { user } = useAuthContext()
 
-  const categories = [{ value: 'development', label: 'Development' }, { value: 'design', label: 'Design' }, { value: 'sales', label: 'Sales' }, { value: 'marketing', label: 'Marketing' }]
-
+  const categories = [
+    { value: 'development', label: 'Development' },
+    { value: 'design', label: 'Design' },
+    { value: 'sales', label: 'Sales' },
+    { value: 'marketing', label: 'Marketing' },
+  ];
 
 
   // form field values
@@ -32,10 +40,37 @@ const Create = () => {
     }
   }, [documents])
 
-  
+
+ 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(name, details, dueDate, category.value, assignedUser)
+
+    const createdBy = {
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      id: user.uid
+    }
+
+    const assingedUsersList = assignedUser.map((user) => {
+      return { 
+        displayName: user.value.displayName,
+        photoURL: user.value.photoURL,
+        id: user.value.id
+       }
+    })
+    
+    // project object
+    const project = {
+      name,
+      details,
+      category: category.value,
+      dueDate: timestamp.fromDate(new Date(dueDate)),
+      comments: [],
+      createdBy,
+      assingedUsersList
+    }
+
+    console.log(project)
   }
 
   return (
@@ -56,11 +91,11 @@ const Create = () => {
           </label>
           <label>
             <span>Project category:</span>
-            <Select options={categories} onChange={(option) => setCategory(option)} />
+            <Select options={categories} onChange={(option) => setCategory(option)} required />
           </label>
           <label>
             <span>Assign to:</span>
-            <Select options={users} onChange={(option) => setAssignedUser(option)} isMulti />
+            <Select options={users} onChange={(option) => setAssignedUser(option)} isMulti required />
           </label>
        <button className="btn">Add Project</button>
        </form>
