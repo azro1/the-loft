@@ -3,6 +3,8 @@ import Select from 'react-select'
 import { useCollection } from '../../hooks/useCollection'
 import { timestamp } from '../../firebase/config'
 import { useAuthContext } from '../../hooks/useAuthContext'
+import { useFirestore } from '../../hooks/useFirestore'
+import { useHistory} from 'react-router-dom'
 
 // styles
 import './Create.css'
@@ -11,6 +13,10 @@ const Create = () => {
   // destructure documents from hook
   const { documents } = useCollection('users')
   const [users, setUsers] = useState([])
+
+    // destructure addDocument function and response from hook
+  const { response, addDocument } = useFirestore('projects')
+  const history = useHistory()
 
   // destructure user from hook
   const { user } = useAuthContext()
@@ -42,7 +48,7 @@ const Create = () => {
 
 
  
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
     const createdBy = {
@@ -70,7 +76,12 @@ const Create = () => {
       assingedUsersList
     }
 
-    console.log(project)
+    // save project document to firestore projects collection
+    await addDocument(project)
+    if (!response.error) {
+      history.push('/')
+    }
+
   }
 
   return (
@@ -99,7 +110,6 @@ const Create = () => {
           </label>
        <button className="btn">Add Project</button>
        </form>
-       
     </div>
   )
 }
