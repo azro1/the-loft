@@ -14,7 +14,7 @@ const Create = () => {
   const { documents } = useCollection('users')
   const [users, setUsers] = useState([])
 
-    // destructure addDocument function and response from hook
+  // destructure addDocument function and response from hook
   const { response, addDocument } = useFirestore('projects')
   const history = useHistory()
 
@@ -51,13 +51,15 @@ const Create = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
+    // logged in user from global auth context
     const createdBy = {
       displayName: user.displayName,
       photoURL: user.photoURL,
       id: user.uid
     }
 
-    const assingedUsersList = assignedUser.map((user) => {
+    // users from users collection in firestore
+    const assignedUsersList = assignedUser.map((user) => {
       return { 
         displayName: user.value.displayName,
         photoURL: user.value.photoURL,
@@ -73,7 +75,7 @@ const Create = () => {
       dueDate: timestamp.fromDate(new Date(dueDate)),
       comments: [],
       createdBy,
-      assingedUsersList
+      assignedUsersList
     }
 
     // save project document to firestore projects collection
@@ -81,7 +83,6 @@ const Create = () => {
     if (!response.error) {
       history.push('/')
     }
-
   }
 
   return (

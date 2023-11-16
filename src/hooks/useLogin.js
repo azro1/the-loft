@@ -51,9 +51,10 @@ const useLogin = () => {
 
         } catch (err) {
             if (!isCancelled) {
-              setError(err.message)
-              console.log(err.message)
-              setIsPending(false)
+               if(err.code === 'auth/internal-error') {
+                 setError('Invalid Login Credentials.')
+               }
+               setIsPending(false)
             }
         }
     }

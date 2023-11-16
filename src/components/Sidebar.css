@@ -33,6 +33,7 @@
     width: 100%;
     color: #fff;
     box-sizing: border-box;
+    align-items: center;
 }
 
 .sidebar .links img {

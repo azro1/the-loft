@@ -10,11 +10,11 @@ const ProjectList = ({ projects }) => {
       {projects.length === 0 && <p>No projects yet!</p>}
       {projects.map((project) => (
         <Link to={`/projects/${project.id}`} key={project.id} >
-           <h4>Project name</h4>
+           <h4>{project.name}</h4>
            <p>Due by: {project.dueDate.toDate().toDateString()}</p>
            <div className="assigned-to">
             <ul>
-              {project.assingedUsersList.map((user) => (
+              {project.assignedUsersList.map((user) => (
                   <li key={user.photoURL}>
                      <Avatar src={user.photoURL} />
                   </li>

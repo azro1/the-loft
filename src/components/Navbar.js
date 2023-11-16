@@ -16,12 +16,12 @@ const { user } = useAuthContext()
       <ul>
         <li className='logo'>
           <img src={door} alt='an open door' />
-          <span>The Loft</span>
+          <span>The Office</span>
         </li>
         {!user && (
           <>
             <li><Link to='/login'>Login</Link></li>
-            <li><Link to='/Signup'>Signup</Link></li>
+            <li><Link to='/signup'>Signup</Link></li>
           </>
         )}
         {user && (
