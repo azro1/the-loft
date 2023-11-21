@@ -1,12 +1,9 @@
-import { useState } from "react"
 const categoryList = ['all', 'mine', 'development', 'design', 'sales', 'marketing']
 
-const ProjectFilter = () => {
-  const [currentCategory, setCurrentCategory] = useState('all')
+const ProjectFilter = ({ currentCategory, changeCategory }) => {
 
   const handleClick = (newCat) => {
-    console.log(newCat)
-    setCurrentCategory(newCat)
+    changeCategory(newCat)
   }
 
   return (
@@ -14,7 +11,10 @@ const ProjectFilter = () => {
        <nav>
          <p>Filter by:</p>
          {categoryList.map((cat) => (
-           <button key={cat} className={currentCategory === cat ? 'active' : ''} onClick={(() => handleClick(cat))}>
+           <button key={cat} 
+             className={currentCategory === cat ? 'active' : ''} 
+             onClick={(() => handleClick(cat))
+            }>
               {cat}
            </button>
          ))}
