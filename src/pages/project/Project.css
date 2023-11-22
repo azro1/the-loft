@@ -1,6 +1,6 @@
 .project-details {
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: repeat(auto-fit, minmax(3fr, 2fr));
     align-items: flex-start;
     grid-gap: 60px;
     margin-bottom: 60px;
@@ -47,6 +47,7 @@
 .project-comments textarea {
     min-height: 40px;
     font-size: 1.5em;
+    max-width: 400px;
 }
 
 /* comment list */
@@ -84,7 +85,3 @@
     color: var(--text-color);
     font-size: 0.9em;
 }
-
-
-
-

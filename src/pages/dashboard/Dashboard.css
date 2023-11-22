@@ -12,6 +12,7 @@
 .project-filter p {
     font-size: 0.9em;
     margin-right: 10px;
+    white-space: nowrap;
 }
 
 .project-filter button {
@@ -31,4 +32,24 @@
 
 .project-filter button.active {
     color: var(--primary-color);
+}
+
+
+/* media queries */
+@media only screen and (max-width: 640px) {
+    .project-filter nav {
+        display: block;
+        flex-wrap: wrap;
+        padding: 15px;
+    }
+    
+    .project-filter p {
+        margin-bottom: 5px;
+    }
+
+    .project-filter button {
+        padding-left: 0;
+        padding-right: 10px;
+        border: none;
+    }
 }

@@ -8,3 +8,22 @@
 .App h1 {
   display: block;
 }
+
+/* media queries */
+@media only screen and (max-width: 1300px) {
+  .App {
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .App .container {
+    order: 3;
+    padding: 0 30px;
+  }
+}
+
+@media only screen and (max-width: 375px) {
+  .App .container {
+    padding: 0 20px;
+  }
+}

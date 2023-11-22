@@ -36,3 +36,14 @@
     height: 12px;
     border-radius: 50%;
 }
+
+/* media queries */
+@media only screen and (max-width: 1300px) {
+    .user-list {
+        width: 100%;
+    }
+    .user-list h2 {
+        text-align: center;
+    }
+}
+
