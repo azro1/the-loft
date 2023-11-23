@@ -21,11 +21,11 @@ const { user } = useAuthContext()
           <nav className='links'>
              <ul>
                  <li>
-                     <NavLink exact to='/'>
+                     <NavLink exact to='/' replace>
                          <img src={DashboardIcon} alt="dashboard icon" />
                          <span>Dashboard</span>
                      </NavLink>
-                     <NavLink to='/create'>
+                     <NavLink to='/create'replace>
                          <img src={AddIcon} alt="add project icon" />
                          <span>New Project</span>
                      </NavLink>

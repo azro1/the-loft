@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
 
 // styles
@@ -22,7 +22,7 @@ function App() {
   return (
     <div className='App'>
       {authIsReady && (
-        <BrowserRouter>
+        <HashRouter>
         {user && <Sidebar />}
           <div className='container'>
           <Navbar />
@@ -50,7 +50,7 @@ function App() {
             </Switch>
           </div>
           {user && <OnlineUsers />}
-        </BrowserRouter>
+        </HashRouter>
       )}
     </div>
   );

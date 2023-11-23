@@ -20,8 +20,8 @@ const { user } = useAuthContext()
         </li>
         {!user && (
           <>
-            <li><Link to='/login'>Login</Link></li>
-            <li><Link to='/signup'>Signup</Link></li>
+            <li><Link to='/login'replace>Login</Link></li>
+            <li><Link to='/signup' replace>Signup</Link></li>
           </>
         )}
         {user && (
