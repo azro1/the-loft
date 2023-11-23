@@ -55,7 +55,9 @@
 @media only screen and (max-width: 1300px) {
     .sidebar {
        width: 100%;
+       height: 350px;
        min-width: unset;
+       min-height: unset;
     }
     .sidebar-content {
         position: unset;
