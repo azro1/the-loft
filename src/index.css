@@ -30,6 +30,7 @@ ul {
   font-size: 1em;
   color: var(--heading-color);
   display: inline-block;
+  word-break: break-word;
 }
 .btn {
   background: #fff;

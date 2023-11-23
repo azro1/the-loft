@@ -13,6 +13,7 @@
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.05);
     text-decoration: none;
     color: inherit;
+    word-break: break-word;
   }
 
   .project-list h4 {
