@@ -23,8 +23,6 @@ const AuthContextProvider = ({ children }) => {
       authIsReady: false
   })
 
-  console.log('AuthContext state:', state)
-
   // on component first render fire useEffect to perform a check with Firebase to see if a user is logged in
   useEffect(() => {
     const unsub = auth.onAuthStateChanged((user) => {

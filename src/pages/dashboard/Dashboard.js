@@ -10,7 +10,7 @@ import './Dashboard.css'
 const Dashboard = () => {
   const [currentCategory, setCurrentCategory] = useState('all')
   // destructure documents from hook
-  const { error, documents } = useCollection('projects')
+  const { error, documents } = useCollection('projects', null, ['createdAt', 'desc'])
   const { user } = useAuthContext()
 
 
@@ -35,7 +35,6 @@ const Dashboard = () => {
       case 'design':
       case 'sales':
       case 'marketing':
-        console.log(doc.category, currentCategory)
         return doc.category === currentCategory
       default:
         return true

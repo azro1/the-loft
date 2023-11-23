@@ -4,6 +4,7 @@ import { useAuthContext } from '../../hooks/useAuthContext'
 import { useFirestore } from '../../hooks/useFirestore'
 import Avatar from '../../components/Avatar'
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
+import { v4 as uid } from 'uuid'
 
 const ProjectComments = ({ project }) => {
   // destructure function and response from hook
@@ -21,8 +22,9 @@ const ProjectComments = ({ project }) => {
       photoURL: user.photoURL,
       content: newComment,
       createdAt: timestamp.fromDate(new Date()),
-      id: Math.random()
+      id: uid()
     }
+
     await updateDocument(project.id, { 
       comments: [...project.comments, commentToAdd]
     })
